@@ -9,26 +9,20 @@
 
 void bubble_sort(int *array, size_t size)
 {
-	size_t index, currentElement;
+	unsigned int index, j;
 
-	for (index = 0; index < size - 1; index++)
+	if (!array)
+		return;
+
+	for (index = 0; index < size -1; index++)
 	{
-		for (currentElement = 0; currentElement < size - index - 1; currentElement++)
+		for (j = 0; j < size - index - 1; j++)
 		{
-			if (array[currentElement] > array[currentElement + 1])
+			if (array[j] > array[j + 1])
 			{
-				/* Échanger les éléments */
-				int temp = array[currentElement];
-
-				array[currentElement] = array[currentElement + 1];
-				array[currentElement + 1] = temp;
+				swap(&array[j], &array[j + 1]);
+				print_array(array, size);
 			}
 		}
-		/* Afficher le tableau après chaque itération */
-		for (currentElement = 0; currentElement < size - 1; currentElement++)
-		{
-			printf("%d, ", array[currentElement]);
-		}
-		printf("%d\n", array[size - 1]);
 	}
 }
