@@ -1,60 +1,44 @@
 #include "sort.h"
 
 /**
- * swap_nodes - Swap two nodes in a listint_t doubly-linked list.
- * @h: A pointer to the head of the doubly-linked list.
- * @n1: A pointer to the first node to swap.
- * @n2: The second node to swap.
- */
-void swap_nodes(listint_t **h, listint_t **n1, listint_t *n2)
-{
-	(*n1)->next = n2->next;
-
-	/* Vérifier si le n2 n'est pas le dernier nœud de la liste */
-	if (n2->next != NULL)
-		n2->next->prev = *n1;
-	n2->prev = (*n1)->prev;
-	n2->next = *n1;
-
-	/* Vérifier si le n1 n'est pas le premier nœud de la liste */
-	if ((*n1)->prev != NULL)
-		(*n1)->prev->next = n2;
-	else
-		*h = n2;
-	(*n1)->prev = n2;
-	*n1 = n2->prev;
-}
-
-/**
  * insertion_sort_list - Sorts insertion a doubly linked list of integers
  * @list: A pointer to the head of a doubly-linked list of integers.
  */
 
 void insertion_sort_list(listint_t **list)
 {
+	listint_t *current, *swap, *preview;
 
-	listint_t *current, *insert, *tmp;
-
-	/* Vérifier si la liste est vide*/
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
+	if (!list || !*list)
 		return;
 
-	/* Parcourir la liste à partir du deuxième élément */
-	for (current = (*list)->next; current != NULL; current = tmp)
+	current = *list;
+	while ((current = current->next))
 	{
-		tmp = current->next;
-		insert = current->prev;
+		swap = current;
 
-		while (insert != NULL && current->n < insert->n)
+		/* Trouver la position d'insertion appropriée pour le noeud actuel*/
+		while (swap->prev && swap->n < swap->prev->n)
 		{
-			/*swap les noeuds*/
-			swap_nodes(list, &insert, current);
+			preview = swap->prev;
 
-			/* Afficher la liste après chaque échange */
-			print_list((const listint_t *)*list);
+			/* Mettre à jours les pointeurs next et prev pour les noeuds voisins */
+			if (swap->next)
+				swap->next->prev = preview;
+			if (preview->prev)
+				preview->prev->next = swap;
+			else
+				/* Update la tête de liste si le noeud actuel devient la nouvelle tête */
+				*list = swap;
 
+			/* Réorganise *next et *prev pour insérer le noeud actuel */
+			preview->next = swap->next;
+			swap->prev = preview->prev;
+			swap->next = preview;
+			preview->prev = swap;
+
+			/* Affiche la liste après chaque étape de tri */
+			print_list(*list);
 		}
 	}
 }
-
-
