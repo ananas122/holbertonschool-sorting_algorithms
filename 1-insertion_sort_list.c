@@ -9,13 +9,13 @@
 void swap_nodes(listint_t **h, listint_t **n1, listint_t *n2)
 {
 	(*n1)->next = n2->next;
-	
+
 	/* Vérifier si le n2 n'est pas le dernier nœud de la liste */
 	if (n2->next != NULL)
 		n2->next->prev = *n1;
 	n2->prev = (*n1)->prev;
 	n2->next = *n1;
-	
+
 	/* Vérifier si le n1 n'est pas le premier nœud de la liste */
 	if ((*n1)->prev != NULL)
 		(*n1)->prev->next = n2;
@@ -37,7 +37,7 @@ void insertion_sort_list(listint_t **list)
 
 	/* Vérifier si la liste est vide*/
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
-        	return;
+		return;
 
 	/* Parcourir la liste à partir du deuxième élément */
 	for (current = (*list)->next; current != NULL; current = tmp)
@@ -46,15 +46,15 @@ void insertion_sort_list(listint_t **list)
 		insert = current->prev;
 
 		while (insert != NULL && current->n < insert->n)
-        	{
-            		/*swap les noeuds*/
+		{
+			/*swap les noeuds*/
 			swap_nodes(list, &insert, current);
 
-            		/* Afficher la liste après chaque échange */
+			/* Afficher la liste après chaque échange */
 			print_list((const listint_t *)*list);
 
-        }
-    }
+		}
+	}
 }
 
 
