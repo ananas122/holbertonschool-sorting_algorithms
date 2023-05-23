@@ -21,11 +21,12 @@ typedef struct listint_s
 } listint_t;
 
 /******** Function utility **********/
-void swap(int *a, int *b);
+
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
-
-/******** Function prototypes **********/
+void swap_nodes(listint_t **h, listint_t **n1, listint_t *n2);
+	
+	/******** Function prototypes **********/
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
