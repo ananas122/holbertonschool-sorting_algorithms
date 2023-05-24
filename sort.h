@@ -21,11 +21,13 @@ typedef struct listint_s
 } listint_t;
 
 /******** Function utility **********/
-void print_array(const int *array, size_t size);
-void print_list(const listint_t *list);
+void swap(int *arr, ssize_t a, ssize_t b);
 int partitionLomuto(int *arr, int firstElement, int lastElement, size_t size);
+void quickRecursive(int *arr, int firstElement, int lastElement, size_t size);
 
 	/******** Function prototypes **********/
+void print_list(const listint_t *list);
+void print_array(const int *array, size_t size);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
