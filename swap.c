@@ -6,11 +6,11 @@
  * @b: Pointer to the second integer.
  */
 
-void swap(int *a, int *b)
+void swap(int *arr, ssize_t a, ssize_t b)
 {
-	int temp;
+	int tmp;
 
-	temp = *b;
-	*b = *a;
-	*a = temp;
+	tmp = arr[a];
+	arr[a] = arr[b];
+	arr[b] = tmp;
 }
