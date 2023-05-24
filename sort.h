@@ -21,9 +21,9 @@ typedef struct listint_s
 } listint_t;
 
 /******** Function utility **********/
-
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
+int partitionLomuto(int *arr, int firstElement, int lastElement, size_t size);
 
 	/******** Function prototypes **********/
 void bubble_sort(int *array, size_t size);
